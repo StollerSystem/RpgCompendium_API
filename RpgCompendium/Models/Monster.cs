@@ -20,11 +20,11 @@ namespace RpgCompendium.Models
     public virtual ICollection<MonsterMainType> MainTypes { get; set; }
     public virtual ICollection<MonsterBehavior> Behaviors { get; set; }
     public virtual ICollection<MonsterArmor> Armors { get; set; }
-     public virtual ICollection<MonsterWeapon> Weapons { get; set; }
+    public virtual ICollection<MonsterWeapon> Weapons { get; set; }
 
-     public static List<Monster> GetMonsters()
+    public static List<Monster> GetMonsters()
     {
-      var apiCallTask = ApiHelper.GetAll();
+      var apiCallTask = ApiHelper.GetAll("monsters");
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);

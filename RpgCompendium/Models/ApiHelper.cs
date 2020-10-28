@@ -5,11 +5,11 @@ namespace RpgCompendium.Models
 {
   class ApiHelper
   {
-    public static async Task<string> GetAll()
+    public static async Task<string> GetAll(string input)
     {
       RestClient client = new RestClient("http://localhost:4000/api");
-      RestRequest request = new RestRequest($"monsters", Method.GET);      
-      request.AddHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE2MDM4MjMwNzQsImV4cCI6MTYwNDQyNzg3NCwiaWF0IjoxNjAzODIzMDc0fQ.dqpV2HYa0vTbbw4gGqIa3P4g_dt_ueO8skKawogeB_M");
+      RestRequest request = new RestRequest($"{input}", Method.GET);      
+      request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
