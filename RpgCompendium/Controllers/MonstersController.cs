@@ -57,12 +57,13 @@ namespace RpgCompendium.Controllers
       monster.User = currentUser;
 
       // _db.Monsters.Add(monster);
-      Monster.Post(monster);
+      // Monster.Post(monster);
       if (MainTypeId != 0)
       {
         System.Console.WriteLine("MAIN TYPE ID:"+MainTypeId);
         // MonsterMainTypes.Add(new MonsterMainType() { MainTypeId = MainTypeId, MonsterId = monster.MonsterId });
-        MonsterMainType.Post(new MonsterMainType() { MainTypeId = MainTypeId, MonsterId = monster.MonsterId });
+        // MonsterMainType.Post(new MonsterMainType() { MainTypeId = MainTypeId, MonsterId = monster.MonsterId });
+        Monster.Post(monster, MainTypeId);
       }
 
       // _db.SaveChanges();

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using RestSharp;
 
@@ -26,6 +27,16 @@ namespace RpgCompendium.Models
     {
       RestClient client = new RestClient("http://localhost:4000/api");
       RestRequest request = new RestRequest($"{endPoint}", Method.POST);
+      request.AddHeader("Content-Type", "application/json");
+      request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
+      request.AddJsonBody(newObject);
+      var response = await client.ExecuteTaskAsync(request);
+    }
+    // OVERLOADED FOR PARAMS
+    public static async Task Post(string endPoint, string newObject, string param, int joinId)
+    {
+      RestClient client = new RestClient("http://localhost:4000/api");
+      RestRequest request = new RestRequest($"{endPoint}/?{param}={joinId}", Method.POST);
       request.AddHeader("Content-Type", "application/json");
       request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
       request.AddJsonBody(newObject);

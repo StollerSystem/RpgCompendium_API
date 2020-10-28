@@ -33,10 +33,10 @@ namespace RpgCompendium.Models
       return monsterList;
     }
 
-    public static void Post(Monster monster)
+    public static void Post(Monster monster, int MainTypeId)
     {
       string jsonMonster = JsonConvert.SerializeObject(monster);
-      var apiCallTask = ApiHelper.Post("monsters", jsonMonster);
+      var apiCallTask = ApiHelper.Post("monsters", jsonMonster, "MainTypeId", MainTypeId);
     }
 
   }
