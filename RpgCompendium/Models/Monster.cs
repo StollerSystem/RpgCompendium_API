@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RpgCompendium.Models
 {
@@ -18,6 +21,17 @@ namespace RpgCompendium.Models
     public virtual ICollection<MonsterBehavior> Behaviors { get; set; }
     public virtual ICollection<MonsterArmor> Armors { get; set; }
      public virtual ICollection<MonsterWeapon> Weapons { get; set; }
+
+     public static List<Monster> GetMonsters()
+    {
+      var apiCallTask = ApiHelper.GetAll();
+      var result = apiCallTask.Result;
+
+      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+      List<Monster> monsterList = JsonConvert.DeserializeObject<List<Monster>>(jsonResponse.ToString());
+
+      return monsterList;
+    }
   }
 }
 
