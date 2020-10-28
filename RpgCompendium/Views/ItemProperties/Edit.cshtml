@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.ItemProperty
+
+<h3>Edit ItemProperty @Html.DisplayFor(model => model.ItemPropertyName)</h3>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ItemPropertyId)
+  @Html.Label("ItemProperty Name")
+  @Html.EditorFor(model => model.ItemPropertyName,
+new {@required="required"})
+  @Html.Label("ItemProperty Description")
+  @Html.EditorFor(model => model.ItemPropertyDescription,
+new {@required="required"})
+
+
+  <input type="submit" value="Save Changes" />
+}
+
+<p>@Html.ActionLink("Back to Item Properties", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

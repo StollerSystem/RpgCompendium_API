@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Monster
+@* @using System *@
+<h1>Add Weapon</h1>
+
+<h3>Add a Weapon to this monster: @Html.DisplayFor(model => model.MonsterName)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MonsterId)
+  @Html.HiddenFor(model => model.Weapons)
+  @Html.Label("Select Weapon")
+  @Html.DropDownList("WeaponId")
+
+  @Html.Label("Select Hand")
+  @Html.DropDownList("WeaponSlot", new List<SelectListItem>
+  { 
+    new SelectListItem{Text="Main Hand", Value="mainHand"},
+    new SelectListItem{Text="Off Hand", Value="offHand"},
+    new SelectListItem{Text="Both Hands", Value="bothHands"}
+  },"Please select")
+  
+  <input type="submit" value="Add" class="btn btn-success btn-sm" />
+}
+<br>
+<p>@Html.ActionLink("Monster List", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

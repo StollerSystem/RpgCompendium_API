@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.ItemProperty
+
+<h3>Add a new Item Property</h3>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.Label("Property Name")
+  @Html.TextBoxFor(model => model.ItemPropertyName,
+new {@required="required"})
+  @Html.Label("Property Description")
+  @Html.EditorFor(model => model.ItemPropertyDescription,
+new {@required="required"})
+
+  <input type="submit" value="Add new Property" />
+}
+
+<button>@Html.ActionLink("Show all Properties", "Index")</button>

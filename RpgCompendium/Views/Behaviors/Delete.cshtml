@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Behavior
+
+<h3>Are you sure you want to delete this?</h3>
+<hr />
+@Html.DisplayNameFor(model => model.BehaviorId): @Html.DisplayFor(model => model.BehaviorName)
+@using (Html.BeginForm())
+{
+  <br>
+  <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+}
+<br>
+<p>@Html.ActionLink("Cancel", "Details", null, new {id = Model.BehaviorId}, new {@class="btn btn-primary btn-sm"})</p>

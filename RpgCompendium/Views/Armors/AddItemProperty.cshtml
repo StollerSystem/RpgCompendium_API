@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Armor
+@* @using System *@
+<h1>Add Property</h1>
+
+<h3>Add a Property to this Armor: @Html.DisplayFor(model => model.ArmorName)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ArmorId)
+  @Html.HiddenFor(model => model.ItemProperties)
+  @Html.Label("Select Property")
+  @Html.DropDownList("ItemPropertyId")
+  
+  <input type="submit" value="Add" class="btn btn-success btn-sm" />
+}
+<br>
+<p>@Html.ActionLink("Armor List", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

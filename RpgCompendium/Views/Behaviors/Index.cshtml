@@ -1,0 +1,25 @@
+@using RpgCompendium.Models;
+@{
+  Layout = "_Layout";
+}
+
+<h1>List of Monster Behaviors</h1>
+<hr />
+
+<h3>Behaviors:</h3>
+@if (@Model.Count == 0)
+{
+  <h3>No behaviors have been added yet!</h3>
+}
+@foreach (Behavior behavior in Model)
+{
+  <li>@Html.ActionLink($"{behavior.BehaviorName}", "Details", new { id = behavior.BehaviorId}) </li>
+}
+<hr />
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+  <p>@Html.ActionLink("Add New Behavior", "Create", null, null, new {@class="btn btn-success btn-sm"})</p>
+}
+
+
+  @* if (User.Identity.IsAuthenticated && User.IsInRole("Administrator")) *@

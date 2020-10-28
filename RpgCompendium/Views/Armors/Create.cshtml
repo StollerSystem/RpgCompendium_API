@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Armor
+
+<h3>Add a new Armor</h3>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.Label("Armor Name")
+  @Html.TextBoxFor(model => model.ArmorName,
+new {@required="required"})
+  @Html.Label("Armor Description")
+  @Html.EditorFor(model => model.ArmorDescription,
+new {@required="required"})  
+
+  @Html.DropDownListFor(model => model.ArmorSlot, new List<SelectListItem>
+{ new SelectListItem{Text="Head", Value="head"},
+new SelectListItem{Text="Face", Value="face"},
+new SelectListItem{Text="Torso", Value="torso"},
+new SelectListItem{Text="Back", Value="back"},
+new SelectListItem{Text="Neck", Value="neck"},
+new SelectListItem{Text="Arm", Value="arm"},
+new SelectListItem{Text="Hand", Value="hand"},
+new SelectListItem{Text="Rings", Value="rings"},
+new SelectListItem{Text="Body", Value="body"},
+new SelectListItem{Text="Waist", Value="waist"},
+new SelectListItem{Text="Legs", Value="legs"}
+},"Please select")
+
+  <input type="submit" value="Add new Armor" />
+}
+
+<button>@Html.ActionLink("Show all Armors", "Index")</button>

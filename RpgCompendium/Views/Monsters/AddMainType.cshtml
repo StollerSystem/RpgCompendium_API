@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Monster
+
+<h1>Add a Main Type</h1>
+
+<h3>Add a main type to this monster: @Html.DisplayFor(model => model.MonsterName)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MonsterId)
+
+  @Html.Label("Select Main Type")
+  @Html.DropDownList("MainTypeId")
+
+  <input type="submit" value="Add" class="btn btn-success btn-sm" />
+}
+<br>
+<p>@Html.ActionLink("Monster List", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

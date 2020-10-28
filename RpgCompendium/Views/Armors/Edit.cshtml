@@ -1,0 +1,37 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Armor
+
+<h4>Edit Armor @Html.DisplayFor(model => model.ArmorName)</h4>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ArmorId)
+  @Html.Label("Armor Name")
+  @Html.EditorFor(model => model.ArmorName,
+new {@required="required"})
+  @Html.Label("Armor Description")
+  @Html.EditorFor(model => model.ArmorDescription,
+new {@required="required"})
+  @Html.DropDownListFor(model => model.ArmorSlot, new List<SelectListItem>
+  { 
+  new SelectListItem{Text="Head", Value="head"},
+  new SelectListItem{Text="Face", Value="face"},
+  new SelectListItem{Text="Torso", Value="torso"},
+  new SelectListItem{Text="Back", Value="back"},
+  new SelectListItem{Text="Neck", Value="neck"},
+  new SelectListItem{Text="Arm", Value="arm"},
+  new SelectListItem{Text="Hand", Value="hand"},
+  new SelectListItem{Text="Rings", Value="rings"},
+  new SelectListItem{Text="Body", Value="body"},
+  new SelectListItem{Text="Waist", Value="waist"},
+  new SelectListItem{Text="Legs", Value="legs"}
+  },"Please select")
+
+
+  <input type="submit" value="Save Changes" />
+}
+
+
+<p>@Html.ActionLink("Back to Armors", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

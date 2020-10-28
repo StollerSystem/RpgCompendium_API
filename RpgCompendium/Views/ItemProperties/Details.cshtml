@@ -1,0 +1,76 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RpgCompendium.Models.ItemProperty;
+
+<h3>Property: @Html.DisplayFor(model => model.ItemPropertyName) </h3>
+<hr />
+<p>Description: @Html.DisplayFor(model => model.ItemPropertyDescription)</p>
+
+
+@if (@Model.ItemPropertyJoins.Count == 0)
+{
+  <p>This Property has not been assigned to any Items</p>
+}
+else
+{
+  <h3>Armor with this property:</h3>
+  <ul>
+    @foreach (var join in Model.ItemPropertyJoins)
+    {
+      if(join.Armor != null)
+      {
+        @using (Html.BeginForm("DeleteItem", "ItemProperties"))
+        {
+        <li>@Html.ActionLink($"{join.Armor.ArmorName}", "Details", "Armors", new { id = join.Armor.ArmorId })     
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+        {
+        <input type="submit" value="Remove" class="btn btn-warning btn-sm" />
+        }
+        </li>
+        @Html.Hidden("itemPropertyId", @join.ItemPropertyId)
+        @Html.Hidden("joinId", @join.ItemPropertyJoinId)      
+        }
+      }
+    }
+  </ul>
+
+  <h3>Weapons with this property:</h3>
+  <ul>
+    @foreach (var join in Model.ItemPropertyJoins)
+    {
+      if(join.Weapon != null)
+      {
+        @using (Html.BeginForm("DeleteItem", "ItemProperties"))
+        {
+        <li>@Html.ActionLink($"{join.Weapon.WeaponName}", "Details", "Weapons", new { id = join.Weapon.WeaponId })     
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+        {
+        <input type="submit" value="Remove" class="btn btn-warning btn-sm" />
+        }
+        </li>
+        @Html.Hidden("itemPropertyId", @join.ItemPropertyId)
+        @Html.Hidden("joinId", @join.ItemPropertyJoinId)      
+        }
+      }
+    }
+  </ul>
+
+}
+
+
+
+
+<hr />
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+<p>@Html.ActionLink("Edit this Item Property", "Edit", new { id = Model.ItemPropertyId }, new {@class="btn btn-success btn-sm"})
+</p>
+
+<p>@Html.ActionLink("Add a Item", "AddItem", "ItemProperties", new { id = Model.ItemPropertyId } , new {@class="btn btn-success btn-sm"})</p>
+
+<p>@Html.ActionLink("Delete this Item Property", "Delete", new { id = Model.ItemPropertyId }, new {@class="btn btn-danger btn-sm"})
+</p>
+}
+<p>@Html.ActionLink("Back to Item Propertys", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

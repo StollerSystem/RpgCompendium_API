@@ -1,0 +1,45 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RpgCompendium.Models.Behavior;
+
+<h3>Behavior Name: @Html.DisplayFor(model => model.BehaviorName) </h3>
+<hr />
+<p>Description: @Html.DisplayFor(model => model.BehaviorDescription)</p>
+
+
+@if (@Model.Monsters.Count == 0)
+{
+  <p>This Main Type is not assigned any Monsters</p>
+}
+else
+{
+  <h3>Monsters with this Behavior:</h3>
+  <ul>
+    @foreach (var join in Model.Monsters)
+    {
+      @using (Html.BeginForm("DeleteMonster", "Behaviors"))
+      {
+      <li>@Html.ActionLink($"{join.Monster.MonsterName}", "Details", "Monsters", new { id = join.Monster.MonsterId })     
+      @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+      {
+      <input type="submit" value="Remove" class="btn btn-warning btn-sm" />
+      }
+      </li>
+      @Html.Hidden("behaviorId", @join.BehaviorId)
+      @Html.Hidden("joinId", @join.MonsterBehaviorId)      
+      }
+    }
+  </ul>
+}
+<hr />
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+<p>@Html.ActionLink("Edit this Behavior", "Edit", new { id = Model.BehaviorId }, new {@class="btn btn-success btn-sm"})
+</p>
+<p>@Html.ActionLink("Add a Monster", "AddMonster", "Behaviors", new { id = Model.BehaviorId } , new {@class="btn btn-success btn-sm"})</p>
+<p>@Html.ActionLink("Delete this Behavior", "Delete", new { id = Model.BehaviorId }, new {@class="btn btn-danger btn-sm"})
+</p>
+}
+<p>@Html.ActionLink("Back to Behaviors", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

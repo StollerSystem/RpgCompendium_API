@@ -1,0 +1,178 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+  
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid  rgb(218, 216, 201);
+}
+.border-bottom {
+  border-bottom: 1px solid  rgb(218, 216, 201);
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem  rgb(218, 216, 201);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  background-image: url("https://cutewallpaper.org/21/darkest-dungeon-backgrounds/Image-Wiki-background-Darkest-Dungeon-Wiki-FANDOM-.jpg");
+  margin-bottom: 60px;
+  background-color: black;
+  color:  rgb(218, 216, 201);
+  font-family: MedievalSharp;
+}
+.footer {
+  font-family: MedievalSharp;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.mainBox {
+  background-color: rgb(46, 46, 46);
+  border: solid rgb(218, 216, 201);
+  border-width: 1px;
+  padding: 15px;
+}
+
+.navBar {
+  background-color: rgba(255, 0, 0, 0.324);
+  color: rgb(218, 216, 201);
+}
+
+.nav-item {
+  color: rgb(218, 216, 201);
+}
+
+.nav-item:hover {
+  color:  rgb(218, 216, 201);
+}
+
+.navR {
+  float: right;
+}
+
+a {
+  color:  rgb(218, 216, 201);
+  font-family: MedievalSharp;
+  font-size: 16px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 700; 
+  line-height: 10px;
+}
+
+hr {
+  color:  rgb(218, 216, 201);
+  border-width: 1px;
+  border-color:  rgb(218, 216, 201);
+  font-family: MedievalSharp; 
+  font-size: 16px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 400; 
+  line-height: 21px; 
+}
+
+
+h1 { 
+font-family: MedievalSharp;
+font-size: 32px; 
+font-style: normal; 
+font-variant: normal; 
+font-weight: 700; 
+line-height: 21px; 
+} 
+     
+h3 { 
+ font-family: MedievalSharp; 
+ font-size: 22px; 
+ font-style: normal; 
+ font-variant: normal; 
+ font-weight: 700; 
+ line-height: 19.4px; 
+ } 
+ h4 {
+  font-family: MedievalSharp;
+  font-size: 32px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 700; 
+  line-height: 21px; 
+  color: red;
+ }
+      
+ p { 
+  font-family: MedievalSharp; 
+  font-size: 16px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 400; 
+  line-height: 21px; 
+} 
+
+blockquote { 
+  font-family: MedievalSharp; 
+  font-size: 21px;
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 400; 
+  line-height: 30px; 
+} 
+pre { 
+  font-family: MedievalSharp;
+  font-size: 13px; 
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 18.5714px;
+}
+input {
+    font-family: MedievalSharp; 
+    font-size: 16px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 400; 
+    line-height: 21px; 
+}
+
+.btn {
+  margin: 3px;
+}
+
+td {
+  color:  rgb(218, 216, 201);
+}

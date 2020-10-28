@@ -1,0 +1,22 @@
+@using RpgCompendium.Models;
+@{
+  Layout = "_Layout";
+}
+
+<h1>List of Monster Armor</h1>
+<hr />
+
+<h3>Armor:</h3>
+@if (@Model.Count == 0)
+{
+  <h3>No Armor have been added yet!</h3>
+}
+@foreach (Armor armor in Model)
+{
+  <li>@Html.ActionLink($"{armor.ArmorName}", "Details", new { id = armor.ArmorId}) </li>
+}
+<hr />
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+    <p>@Html.ActionLink("Add New Armor", "Create", null, null, new {@class="btn btn-success btn-sm"})</p>
+    }

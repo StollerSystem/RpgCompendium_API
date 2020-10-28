@@ -1,0 +1,25 @@
+@using RpgCompendium.Models;
+@{
+  Layout = "_Layout";
+}
+
+<h1>List of Item Properties</h1>
+<hr />
+
+<h3>Item Properties:</h3>
+@if (@Model.Count == 0)
+{
+  <h3>No ItemProperties have been added yet!</h3>
+}
+@foreach (ItemProperty itemProperty in Model)
+{
+  <li>@Html.ActionLink($"{itemProperty.ItemPropertyName}", "Details", new { id = itemProperty.ItemPropertyId}) </li>
+}
+<hr />
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+  <p>@Html.ActionLink("Add New ItemProperty", "Create", null, null, new {@class="btn btn-success btn-sm"})</p>
+}
+
+
+  @* if (User.Identity.IsAuthenticated && User.IsInRole("Administrator")) *@

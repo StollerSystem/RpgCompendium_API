@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Monster
+
+<h3>Edit Monster @Html.DisplayFor(model => model.MonsterName)</h3>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MonsterId)
+  @Html.Label("Monster Name")
+  @Html.EditorFor(model => model.MonsterName,
+new {@required="required"})
+
+  <input type="submit" value="Save Changes" />
+}
+
+<hr />
+<p>@Html.ActionLink("Back to monsters", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

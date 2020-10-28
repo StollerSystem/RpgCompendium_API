@@ -1,0 +1,74 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RpgCompendium.Models.Weapon;
+
+<h3>Weapon Name: @Html.DisplayFor(model => model.WeaponName) </h3>
+<p>Description: @Html.DisplayFor(model => model.WeaponDescription)</p>
+@* <p>Slot: @Html.DisplayFor(model => model.WeaponProperties)</p> *@
+@* ItemProperties assigned *@
+@if (@Model.ItemProperties.Count == 0)
+{
+  <p>This Weapon is not assigned any Item Properties</p>
+}
+else
+{
+  <h3>Item Properties for this Weapon:</h3>
+  <ul>
+    @foreach (var join in Model.ItemProperties)
+    {
+      
+      @using (Html.BeginForm("DeleteItemProperty", "Weapons"))
+      {
+      <li>@Html.ActionLink($"{join.ItemProperty.ItemPropertyName}", "Details", "ItemProperties", new { id = join.ItemProperty.ItemPropertyId })     
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+      {      
+      <input type="submit" value="Remove" class="btn btn-warning btn-sm" />
+      }      
+      </li>
+      @Html.Hidden("WeaponId", @join.WeaponId)
+      @Html.Hidden("joinId", @join.ItemPropertyJoinId)      
+      }
+    }
+  </ul>
+}
+@* Monsters Assigned *@
+@if (@Model.Monsters.Count == 0)
+{
+  <p>This Weapon is not assigned any Monsters</p>
+}
+else
+{
+  <h3>Monsters with this Weapon:</h3>
+  <ul>
+    @foreach (var join in Model.Monsters)
+    {
+      
+      @using (Html.BeginForm("DeleteMonster", "Weapons"))
+      {
+      <li>@Html.ActionLink($"{join.Monster.MonsterName}", "Details", "Monsters", new { id = join.Monster.MonsterId })     
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+      {      
+      <input type="submit" value="Remove" class="btn btn-warning btn-sm" />
+      }      
+      </li>
+      @Html.Hidden("WeaponId", @join.WeaponId)
+      @Html.Hidden("joinId", @join.MonsterWeaponId)      
+      }
+    }
+  </ul>
+}
+<hr />
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+      {
+<p>@Html.ActionLink("Edit this Weapon", "Edit", new { id = Model.WeaponId }, new {@class="btn btn-success btn-sm"})
+</p>
+
+<p>@Html.ActionLink("Add to a Monster", "AddMonster", "Weapons", new { id = Model.WeaponId } , new {@class="btn btn-success btn-sm"})</p>
+<p>@Html.ActionLink("Add a Property to this Item", "AddItemProperty", "Weapons", new { id = Model.WeaponId } , new {@class="btn btn-success btn-sm"})</p>
+
+<p>@Html.ActionLink("Delete this Weapon", "Delete", new { id = Model.WeaponId }, new {@class="btn btn-danger btn-sm"})
+</p>
+      }
+<p>@Html.ActionLink("Back to all Weapon", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p> 

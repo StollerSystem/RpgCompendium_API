@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Monster
+
+<h1>Are you sure you want to delete this?</h1>
+<hr />
+@Html.DisplayNameFor(model => model.MonsterName): @Html.DisplayFor(model => model.MonsterName)
+
+
+@using (Html.BeginForm())
+{
+  <br>
+  <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+}
+<div>@Html.ActionLink("Cancel", "Details", null, new {id = Model.MonsterId}, new {@class="btn btn-primary btn-sm"})
+</div>

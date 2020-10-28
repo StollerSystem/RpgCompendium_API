@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Weapon
+
+<h3>Add a new Weapon</h3>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.Label("Weapon Name")
+  @Html.TextBoxFor(model => model.WeaponName,
+new {@required="required"})
+  @Html.Label("Weapon Description")
+  @Html.EditorFor(model => model.WeaponDescription,
+new {@required="required"})  
+
+  @* @Html.DropDownListFor(model => model.WeaponProperties, new List<SelectListItem>
+{ new SelectListItem{Text="One Handed", Value="oneHanded"},
+new SelectListItem{Text="Two Handed", Value="twoHanded"}
+},"Please select") *@
+
+  <input type="submit" value="Add new Weapon" />
+}
+
+<button>@Html.ActionLink("Show all Weapons", "Index")</button>

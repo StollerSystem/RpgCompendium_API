@@ -1,0 +1,23 @@
+@using RpgCompendium.Models;
+@model IEnumerable<RpgCompendium.Models.Monster>
+@{
+  Layout = "_Layout";
+}
+@* <h1>All Monsters</h1> *@
+<h1>List of All User Monsters</h1>
+<hr />
+
+<h3>Monsters:</h3>
+@if (@Model.Any())
+{
+  @foreach (Monster monster in Model)
+  {
+    <li>@Html.ActionLink($"{monster.MonsterName}", "Details", "Monsters", new { id = monster.MonsterId}) </li>
+  }
+}
+else
+{
+  <h3>No monsters have been added yet</h3>
+}
+<hr />
+<div>@Html.ActionLink("Add New Monster", "Create", null, null, new {@class="btn btn-success btn-sm"})</div>

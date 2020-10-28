@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.ItemProperty
+
+<h1>Add an Item</h1>
+
+<h3>Add an Item to this Item Property: @Html.DisplayFor(model => model.ItemPropertyName)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ItemPropertyId)
+
+  @Html.Label("Select Armor")
+  @Html.DropDownList("ArmorId", null , "Please Select")
+  @Html.Label("Select Weapon")
+  @Html.DropDownList("WeaponId", null , "Please Select")
+
+
+  @* @Html.DropDownList("EngineerId", null, "Please Select", htmlAttributes: new{required = "Please select an engineer"}) *@
+
+  <input type="submit" value="Save" class="btn btn-success btn-sm" />
+}
+<br>
+<p>@Html.ActionLink("ItemProperty List", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

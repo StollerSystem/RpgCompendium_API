@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+@model RpgCompendium.Models.Behavior
+
+<h1>Add a Monster</h1>
+
+<h3>Add a monster to this behavior: @Html.DisplayFor(model => model.BehaviorName)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.BehaviorId)
+
+  @Html.Label("Select Monster")
+  @Html.DropDownList("MonsterId")
+
+  <input type="submit" value="Save" class="btn btn-success btn-sm" />
+}
+<br>
+<p>@Html.ActionLink("Behavior List", "Index", null, null, new {@class="btn btn-primary btn-sm"})</p>

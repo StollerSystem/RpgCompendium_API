@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+@using RpgCompendium.Models;
+@model IEnumerable<RpgCompendium.Models.Monster>
+@using System.Security.Claims
+
+<h1>User Account</h1>
+<hr />
+@if (User.Identity.IsAuthenticated)
+{
+  <h1>Hello @User.Identity.Name</h1>
+  @* <h1>Monsters for @User.Identity.Name</h1>
+  <h1>List of Monsters</h1> *@
+  <hr />
+  <p>@Html.ActionLink("Edit Details", "Edit")</p>
+  <h3>Your Monsters:</h3>
+  @if (@Model.Any())
+  {
+  @foreach (Monster monster in Model)
+  {
+    <li>@Html.ActionLink($"{monster.MonsterName}", "Details", "Monsters", new { id = monster.MonsterId}) </li>
+  }
+  }
+  else
+  {
+  <h3>No monsters have been added yet</h3>
+  }
+  <hr />
+  <div>@Html.ActionLink("Add New Monster", "Create", "Monsters", null, new {@class="btn btn-success btn-sm"})</div>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" value="Log out" class="btn btn-danger btn-sm" />
+  }
+}
+else
+{
+  <p>@Html.ActionLink("Register", "Register")</p>
+  <p>@Html.ActionLink("Log in", "Login")</p>
+  <p>@Html.ActionLink("Home", "Index", "Home")</p>
+}
