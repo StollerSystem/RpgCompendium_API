@@ -22,8 +22,9 @@ namespace RpgCompendium
         .UseStartup<Startup>()
         .Build();
         InitializeDatabase(host);
-        host.Run();
+        host.Run();        
     }
+    
     private static void InitializeDatabase(IWebHost host)
     {
       using (var scope = host.Services.CreateScope())
