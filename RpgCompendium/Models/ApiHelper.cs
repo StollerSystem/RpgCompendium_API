@@ -5,10 +5,10 @@ namespace RpgCompendium.Models
 {
   class ApiHelper
   {
-    public static async Task<string> GetAll(string input)
+    public static async Task<string> GetAll(string endPoint)
     {
       RestClient client = new RestClient("http://localhost:4000/api");
-      RestRequest request = new RestRequest($"{input}", Method.GET);      
+      RestRequest request = new RestRequest($"{endPoint}", Method.GET);      
       request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
@@ -22,12 +22,13 @@ namespace RpgCompendium.Models
       return response.Content;
     }
 
-    public static async Task Post(string newAnimal)
+    public static async Task Post(string endPoint, string newObject)
     {
       RestClient client = new RestClient("http://localhost:4000/api");
-      RestRequest request = new RestRequest($"animals", Method.POST);
+      RestRequest request = new RestRequest($"{endPoint}", Method.POST);
       request.AddHeader("Content-Type", "application/json");
-      request.AddJsonBody(newAnimal);
+      request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
+      request.AddJsonBody(newObject);
       var response = await client.ExecuteTaskAsync(request);
     }
 

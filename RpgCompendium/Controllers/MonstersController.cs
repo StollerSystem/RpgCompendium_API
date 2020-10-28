@@ -36,7 +36,9 @@ namespace RpgCompendium.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.MainTypeId = new SelectList(_db.MainTypes, "MainTypeId", "MainTypeName");
+      var allMainTypes = MainType.GetMainTypes();
+      // ViewBag.MainTypeId = new SelectList(_db.MainTypes, "MainTypeId", "MainTypeName");
+      ViewBag.MainTypeId = new SelectList(allMainTypes, "MainTypeId", "MainTypeName");
       return View();
     }
 
@@ -53,12 +55,18 @@ namespace RpgCompendium.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       monster.User = currentUser;
-      _db.Monsters.Add(monster);
+
+      // _db.Monsters.Add(monster);
+      Monster.Post(monster);
       if (MainTypeId != 0)
       {
-        _db.MonsterMainTypes.Add(new MonsterMainType() { MainTypeId = MainTypeId, MonsterId = monster.MonsterId });
+        System.Console.WriteLine("MAIN TYPE ID:"+MainTypeId);
+        // MonsterMainTypes.Add(new MonsterMainType() { MainTypeId = MainTypeId, MonsterId = monster.MonsterId });
+        MonsterMainType.Post(new MonsterMainType() { MainTypeId = MainTypeId, MonsterId = monster.MonsterId });
       }
-      _db.SaveChanges();
+
+      // _db.SaveChanges();
+
       return RedirectToAction("Index");
     }
 

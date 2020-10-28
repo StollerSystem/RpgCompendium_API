@@ -18,8 +18,9 @@ namespace RpgCompendium.Controllers
 
     public ActionResult Index()
     {
-      List<MainType> model = _db.MainTypes.ToList();
-      return View(model);
+      var allMainTypes = MainType.GetMainTypes();
+      // List<MainType> model = _db.MainTypes.ToList();
+      return View(allMainTypes);
     }
 
     public ActionResult Create()
@@ -38,7 +39,7 @@ namespace RpgCompendium.Controllers
     public ActionResult Details(int id)
     {
       var thisMainType = _db.MainTypes
-          // .Include(mainType => mainType.Monsters)
+          // .Include(mainType => mainType.MainTypes)
           // .ThenInclude(join => join.Monster)
           .FirstOrDefault(mainType => mainType.MainTypeId == id);
       return View(thisMainType);
