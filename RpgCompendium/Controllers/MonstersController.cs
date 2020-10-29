@@ -85,7 +85,9 @@ namespace RpgCompendium.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       // var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
-      ViewBag.User = currentUser;     
+      ViewBag.User = currentUser;
+      // var monsterUser = await _userManager.FindByIdAsync("8c5d6605-bf6b-4bc8-8c2e-1a16003f282d");     
+      // thisMonster.User = monsterUser;
 
       ViewBag.postAlert = postAlert;
       

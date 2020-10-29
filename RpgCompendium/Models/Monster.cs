@@ -45,6 +45,7 @@ namespace RpgCompendium.Models
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      System.Console.WriteLine(jsonResponse.ToString());
       Monster monster = JsonConvert.DeserializeObject<Monster>(jsonResponse.ToString());
 
       return monster;
