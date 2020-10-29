@@ -25,5 +25,11 @@ namespace RpgCompendium.Models
 
       return mainTypeList;
     }
+
+    public static void Post(MainType mainType)
+    {
+      string jsonMainType = JsonConvert.SerializeObject(mainType);
+      var apiCallTask = ApiHelper.Post("maintypes", jsonMainType);
+    }
   }
-}
+ }   

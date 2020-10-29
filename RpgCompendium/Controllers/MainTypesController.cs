@@ -31,8 +31,9 @@ namespace RpgCompendium.Controllers
     [HttpPost]
     public ActionResult Create(MainType mainType)
     {
-      _db.MainTypes.Add(mainType);
-      _db.SaveChanges();
+      // _db.MainTypes.Add(mainType);
+      // _db.SaveChanges();
+      MainType.Post(mainType);
       return RedirectToAction("Index");
     }
 
