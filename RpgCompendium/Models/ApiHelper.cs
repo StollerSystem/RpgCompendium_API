@@ -54,10 +54,10 @@ namespace RpgCompendium.Models
       var response = await client.ExecuteTaskAsync(request);
     }
 
-    public static async Task Delete(int id)
+    public static async Task Delete(int id, string endPoint)
     {
       RestClient client = new RestClient("http://localhost:4000/api");
-      RestRequest request = new RestRequest($"animals/{id}", Method.DELETE);
+      RestRequest request = new RestRequest($"{endPoint}/{id}", Method.DELETE);
       request.AddHeader("Content-Type", "application/json");
       request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
       var response = await client.ExecuteTaskAsync(request);

@@ -8,6 +8,7 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.MonsterId)
+  @Html.HiddenFor(model => model.UserId)
   @Html.Label("Monster Name")
   @Html.EditorFor(model => model.MonsterName,
 new {@required="required"})

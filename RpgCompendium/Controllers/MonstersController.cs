@@ -54,7 +54,8 @@ namespace RpgCompendium.Controllers
       // return RedirectToAction("Index");
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      monster.User = currentUser;
+      // monster.User = currentUser;
+      monster.UserId = currentUser.Id;
 
       // _db.Monsters.Add(monster);
       // Monster.Post(monster);
@@ -86,8 +87,8 @@ namespace RpgCompendium.Controllers
       var currentUser = await _userManager.FindByIdAsync(userId);
       // var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
       ViewBag.User = currentUser;
-      // var monsterUser = await _userManager.FindByIdAsync("8c5d6605-bf6b-4bc8-8c2e-1a16003f282d");     
-      // thisMonster.User = monsterUser;
+      var monsterUser = await _userManager.FindByIdAsync(thisMonster.UserId);     
+      thisMonster.User = monsterUser;
 
       ViewBag.postAlert = postAlert;
       
@@ -112,16 +113,18 @@ namespace RpgCompendium.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisMonster = _db.Monsters.FirstOrDefault(monster => monster.MonsterId == id);
+      // var thisMonster = _db.Monsters.FirstOrDefault(monster => monster.MonsterId == id);
+      var thisMonster = Monster.GetDetails(id);
       return View(thisMonster);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisMonster = _db.Monsters.FirstOrDefault(monster => monster.MonsterId == id);
-      _db.Monsters.Remove(thisMonster);
-      _db.SaveChanges();
+      // var thisMonster = _db.Monsters.FirstOrDefault(monster => monster.MonsterId == id);
+      // _db.Monsters.Remove(thisMonster);
+      // _db.SaveChanges();
+      Monster.Delete(id);
       return RedirectToAction("Index");
     }
     // MAIN TYPES

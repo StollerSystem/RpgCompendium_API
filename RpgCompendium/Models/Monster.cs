@@ -16,6 +16,7 @@ namespace RpgCompendium.Models
     }
     public int MonsterId { get; set; }
     public string MonsterName { get; set; }
+    public string UserId { get; set; }
     public virtual ApplicationUser User { get; set; }
     public virtual ICollection<MonsterMainType> MainTypes { get; set; }
     public virtual ICollection<MonsterBehavior> Behaviors { get; set; }
@@ -54,6 +55,10 @@ namespace RpgCompendium.Models
       var apiCallTask = ApiHelper.Put(monster.MonsterId, "monsters", jsonMonster);
     }
 
+    public static void Delete(int id)
+    {
+      var apiCallTask = ApiHelper.Delete(id,"monsters");
+    }
 
   }
 }
