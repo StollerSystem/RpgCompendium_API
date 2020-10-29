@@ -73,14 +73,15 @@ namespace RpgCompendium.Controllers
 
     public async Task<ActionResult> Details(int id, string postAlert)
     {
-      var thisMonster = _db.Monsters
-          // .Include(monster => monster.MainTypes)
-          // .ThenInclude(join => join.MainType)
-          // .Include(monster => monster.Behaviors)
-          // .ThenInclude(join => join.Behavior)
-          // .Include(monster => monster.Armors)
-          // .ThenInclude(join => join.Armor)
-          .FirstOrDefault(monster => monster.MonsterId == id);
+      // var thisMonster = _db.Monsters
+      //     // .Include(monster => monster.MainTypes)
+      //     // .ThenInclude(join => join.MainType)
+      //     // .Include(monster => monster.Behaviors)
+      //     // .ThenInclude(join => join.Behavior)
+      //     // .Include(monster => monster.Armors)
+      //     // .ThenInclude(join => join.Armor)
+      //     .FirstOrDefault(monster => monster.MonsterId == id);
+      var thisMonster = Monster.GetDetails(id);
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       // var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);

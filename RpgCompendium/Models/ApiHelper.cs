@@ -15,10 +15,11 @@ namespace RpgCompendium.Models
       return response.Content;
     }
 
-    public static async Task<string> Get(int id)
+    public static async Task<string> Get(int id, string endPoint)
     {
       RestClient client = new RestClient("http://localhost:4000/api");
-      RestRequest request = new RestRequest($"animals/{id}", Method.GET);
+      RestRequest request = new RestRequest($"{endPoint}/{id}", Method.GET);
+      request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }

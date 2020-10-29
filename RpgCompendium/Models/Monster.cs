@@ -39,6 +39,17 @@ namespace RpgCompendium.Models
       var apiCallTask = ApiHelper.Post("monsters", jsonMonster, "MainTypeId", MainTypeId);
     }
 
+    public static Monster GetDetails(int id)
+    {
+      var apiCallTask = ApiHelper.Get(id, "monsters");
+      var result = apiCallTask.Result;
+
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      Monster monster = JsonConvert.DeserializeObject<Monster>(jsonResponse.ToString());
+
+      return monster;
+    }
+
   }
 }
 
