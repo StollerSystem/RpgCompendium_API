@@ -44,12 +44,13 @@ namespace RpgCompendium.Models
       var response = await client.ExecuteTaskAsync(request);
     }
 
-    public static async Task Put(int id, string newAnimal)
+    public static async Task Put(int id, string endPoint, string newObject)
     {
       RestClient client = new RestClient("http://localhost:4000/api");
-      RestRequest request = new RestRequest($"animals/{id}", Method.PUT);
+      RestRequest request = new RestRequest($"{endPoint}/{id}", Method.PUT);
       request.AddHeader("Content-Type", "application/json");
-      request.AddJsonBody(newAnimal);
+      request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
+      request.AddJsonBody(newObject);      
       var response = await client.ExecuteTaskAsync(request);
     }
 
@@ -58,6 +59,7 @@ namespace RpgCompendium.Models
       RestClient client = new RestClient("http://localhost:4000/api");
       RestRequest request = new RestRequest($"animals/{id}", Method.DELETE);
       request.AddHeader("Content-Type", "application/json");
+      request.AddHeader("Authorization", $"Bearer {EnvironmentVariables.BearerToken}");
       var response = await client.ExecuteTaskAsync(request);
     }
   }

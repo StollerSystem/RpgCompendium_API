@@ -96,15 +96,17 @@ namespace RpgCompendium.Controllers
 
     public ActionResult Edit(int id)
     {
-      var thisMonster = _db.Monsters.FirstOrDefault(monster => monster.MonsterId == id);
+      var thisMonster = Monster.GetDetails(id);
+      // var thisMonster = _db.Monsters.FirstOrDefault(monster => monster.MonsterId == id);
       return View(thisMonster);
     }
 
     [HttpPost]
     public ActionResult Edit(Monster monster)
     {
-      _db.Entry(monster).State = EntityState.Modified;
-      _db.SaveChanges();
+      // _db.Entry(monster).State = EntityState.Modified;
+      // _db.SaveChanges();
+      Monster.Put(monster);
       return RedirectToAction("Details", new { id = monster.MonsterId });
     }
 

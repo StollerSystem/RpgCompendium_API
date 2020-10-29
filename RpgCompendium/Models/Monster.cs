@@ -43,13 +43,17 @@ namespace RpgCompendium.Models
     {
       var apiCallTask = ApiHelper.Get(id, "monsters");
       var result = apiCallTask.Result;
-
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
       System.Console.WriteLine(jsonResponse.ToString());
       Monster monster = JsonConvert.DeserializeObject<Monster>(jsonResponse.ToString());
-
       return monster;
     }
+    public static void Put(Monster monster)
+    {
+      string jsonMonster = JsonConvert.SerializeObject(monster);
+      var apiCallTask = ApiHelper.Put(monster.MonsterId, "monsters", jsonMonster);
+    }
+
 
   }
 }
